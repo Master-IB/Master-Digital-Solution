@@ -1,0 +1,1159 @@
+/* =========================================================
+   MASTER DIGITAL SOLUTIONS & IT
+   Main Stylesheet
+   ========================================================= */
+
+
+/* =========================================================
+   1. ROOT VARIABLES
+   ========================================================= */
+
+:root {
+    --bg: #F1F4F8;
+    --surface: #FFFFFF;
+    --ink: #0F1B2D;
+    --muted: #4B5A70;
+    --line: #D5DCE6;
+
+    --brand: #2440E8;
+    --brand-ink: #FFFFFF;
+    --warm: #FFC94A;
+
+    --head: 'Bricolage Grotesque', 'Trebuchet MS', sans-serif;
+    --body: 'Figtree', 'Segoe UI', Arial, sans-serif;
+
+    box-sizing: border-box;
+
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+
+/* =========================================================
+   2. DARK MODE
+   ========================================================= */
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --bg: #0C1524;
+        --surface: #152238;
+        --ink: #EAF0F8;
+        --muted: #9DAEC6;
+        --line: #26364F;
+
+        --brand: #7B90FF;
+        --brand-ink: #0C1524;
+    }
+}
+
+:root[data-theme="dark"] {
+    --bg: #0C1524;
+    --surface: #152238;
+    --ink: #EAF0F8;
+    --muted: #9DAEC6;
+    --line: #26364F;
+
+    --brand: #7B90FF;
+    --brand-ink: #0C1524;
+}
+
+
+/* =========================================================
+   3. GLOBAL STYLES
+   ========================================================= */
+
+html {
+    scroll-padding-top: calc(72px + env(safe-area-inset-top, 0px));
+    scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 1.0625rem/1.6 var(--body);
+}
+
+a {
+    color: inherit;
+}
+
+p {
+    margin: 0;
+}
+
+:focus-visible {
+    outline: 3px solid var(--brand);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   4. LAYOUT
+   ========================================================= */
+
+.wrap {
+    width: min(1120px, 100% - 2.5rem);
+    margin-inline: auto;
+}
+
+section {
+    padding: clamp(3.5rem, 8vw, 6rem) 0;
+}
+
+
+/* =========================================================
+   5. TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2,
+h3 {
+    font-family: var(--head);
+    line-height: 1.08;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: clamp(1.9rem, 4vw, 2.9rem);
+    font-weight: 800;
+}
+
+h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   6. BUTTONS
+   ========================================================= */
+
+.btn {
+    display: inline-block;
+    padding: 0.85rem 1.4rem;
+
+    border: 2px solid var(--brand);
+    border-radius: 10px;
+
+    background: var(--brand);
+    color: var(--brand-ink);
+
+    font: 600 1rem var(--body);
+    text-decoration: none;
+
+    cursor: pointer;
+}
+
+.btn.ghost {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--line);
+}
+
+.btn:hover {
+    filter: brightness(1.1);
+}
+
+
+/* =========================================================
+   7. HEADER / NAVIGATION
+   ========================================================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    background: color-mix(
+        in srgb,
+        var(--bg) 92%,
+        transparent
+    );
+
+    backdrop-filter: blur(8px);
+
+    border-bottom: 1px solid var(--line);
+
+    padding-top: env(safe-area-inset-top, 0px);
+}
+
+.bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 72px;
+    gap: 1rem;
+}
+
+
+/* Logo */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    font: 800 1.05rem var(--head);
+    line-height: 1.1;
+
+    text-decoration: none;
+}
+
+.logo i {
+    width: 34px;
+    height: 34px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 9px;
+
+    background: var(--brand);
+    color: var(--brand-ink);
+
+    font: 800 1rem var(--head);
+    font-style: normal;
+}
+
+
+/* Navigation */
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 1.15rem;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+
+    gap: 1.15rem;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: var(--muted);
+
+    font-size: 0.97rem;
+    font-weight: 500;
+
+    text-decoration: none;
+}
+
+nav ul a:hover {
+    color: var(--ink);
+}
+
+nav ul a[aria-current] {
+    color: var(--ink);
+    font-weight: 600;
+
+    border-bottom: 3px solid var(--warm);
+}
+
+nav .btn {
+    padding: 0.6rem 1.1rem;
+    color: var(--brand-ink);
+}
+
+
+/* Mobile menu button */
+
+.menu {
+    display: none;
+
+    background: none;
+
+    border: 1px solid var(--line);
+    border-radius: 8px;
+
+    padding: 0.5rem 0.8rem;
+
+    color: var(--ink);
+    font: 600 0.95rem var(--body);
+}
+
+
+/* =========================================================
+   8. HERO SECTION
+   ========================================================= */
+
+.hero {
+    padding: clamp(3rem, 8vw, 6.5rem) 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(8, 16, 32, 0.86) 0%,
+            rgba(8, 16, 32, 0.62) 55%,
+            rgba(8, 16, 32, 0.25) 100%
+        ),
+        url(hero.jpg) center / cover no-repeat;
+
+    color: #fff;
+}
+
+.hero .wrap {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+
+    gap: 3rem;
+    align-items: center;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 6.2vw, 4.6rem);
+    font-weight: 800;
+    color: #fff;
+}
+
+.hero p {
+    max-width: 32rem;
+
+    margin: 1.4rem 0 2rem;
+
+    color: #D5DEEC;
+    font-size: 1.15rem;
+}
+
+.cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.hero .btn.ghost {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.hero .btn:not(.ghost) {
+    background: var(--warm);
+    border-color: var(--warm);
+    color: #0F1B2D;
+}
+
+
+/* =========================================================
+   9. HERO BOARD
+   ========================================================= */
+
+.board {
+    overflow: hidden;
+
+    background: var(--surface);
+
+    border: 1px solid var(--line);
+    border-radius: 16px;
+
+    box-shadow: 12px 12px 0 var(--warm);
+}
+
+.board-top {
+    display: flex;
+    gap: 6px;
+
+    padding: 0.8rem 1rem;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.board-top span {
+    width: 11px;
+    height: 11px;
+
+    border-radius: 50%;
+    background: var(--line);
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 1rem;
+
+    padding: 1rem 1.2rem;
+
+    border-bottom: 1px solid var(--line);
+}
+
+.row:last-child {
+    border: 0;
+}
+
+.row b {
+    font-family: var(--head);
+}
+
+.row small {
+    display: block;
+    color: var(--muted);
+}
+
+
+/* Tags */
+
+.tag {
+    padding: 0.2rem 0.7rem;
+
+    border: 1px solid var(--line);
+    border-radius: 99px;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+.tag.live {
+    background: var(--brand);
+    color: var(--brand-ink);
+    border-color: var(--brand);
+}
+
+
+/* =========================================================
+   10. GENERAL SECTIONS
+   ========================================================= */
+
+.intro {
+    max-width: 38rem;
+    margin-bottom: 2.5rem;
+}
+
+.intro p {
+    margin-top: 0.9rem;
+    color: var(--muted);
+}
+
+.alt {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+}
+
+
+/* =========================================================
+   11. SERVICES
+   ========================================================= */
+
+.services {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 0;
+
+    overflow: hidden;
+
+    background: var(--surface);
+
+    border: 1px solid var(--line);
+    border-radius: 16px;
+}
+
+.svc {
+    padding: 1.8rem;
+
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+}
+
+.svc:nth-child(3n) {
+    border-right: 0;
+}
+
+.svc:nth-last-child(-n + 3) {
+    border-bottom: 0;
+}
+
+.svc h3 {
+    margin: 0.9rem 0 0.5rem;
+}
+
+.svc p {
+    color: var(--muted);
+    font-size: 1rem;
+}
+
+
+/* Service icons */
+
+.ico {
+    width: 44px;
+    height: 44px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 12px;
+
+    background: color-mix(
+        in srgb,
+        var(--brand) 14%,
+        transparent
+    );
+
+    color: var(--brand);
+}
+
+.ico svg {
+    width: 22px;
+    height: 22px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   12. ABOUT
+   ========================================================= */
+
+.about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 3rem;
+    align-items: start;
+}
+
+.about p {
+    margin-top: 1rem;
+    color: var(--muted);
+}
+
+.points {
+    display: grid;
+    gap: 1.1rem;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.points li {
+    padding-left: 1.1rem;
+    border-left: 4px solid var(--warm);
+}
+
+.points b {
+    display: block;
+
+    font-family: var(--head);
+    font-size: 1.15rem;
+}
+
+.points span {
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   13. BLOG / POSTS
+   ========================================================= */
+
+.posts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 1.25rem;
+}
+
+.post {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 0.7rem;
+
+    padding: 1.5rem;
+
+    background: var(--surface);
+
+    border: 1px solid var(--line);
+    border-radius: 14px;
+}
+
+.post small {
+    color: var(--muted);
+}
+
+.post a {
+    margin-top: auto;
+
+    color: var(--brand);
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.post .go::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    border-radius: 14px;
+}
+
+.post:has(.go) {
+    transition:
+        border-color 0.15s,
+        transform 0.15s;
+}
+
+.post:has(.go):hover {
+    border-color: var(--brand);
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   14. CONTACT
+   ========================================================= */
+
+.contact {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+
+    gap: 3rem;
+}
+
+.info {
+    display: grid;
+    gap: 1.1rem;
+
+    list-style: none;
+
+    margin: 1.5rem 0 0;
+    padding: 0;
+
+    color: var(--muted);
+}
+
+.info li {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 0.85rem;
+}
+
+.info b {
+    color: var(--ink);
+}
+
+.info a {
+    color: var(--brand);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.ci {
+    width: 22px;
+    height: 22px;
+
+    flex: none;
+    margin-top: 0.2rem;
+
+    fill: none;
+    stroke: var(--brand);
+    stroke-width: 2;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   15. FORM
+   ========================================================= */
+
+form {
+    display: grid;
+    gap: 1rem;
+
+    padding: 1.6rem;
+
+    background: var(--surface);
+
+    border: 1px solid var(--line);
+    border-radius: 16px;
+}
+
+label {
+    display: grid;
+    gap: 0.35rem;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+
+    padding: 0.75rem 0.9rem;
+
+    background: var(--bg);
+    color: var(--ink);
+
+    border: 1px solid var(--line);
+    border-radius: 10px;
+
+    font: 400 1rem var(--body);
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+#msg {
+    min-height: 1.4em;
+
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+
+/* =========================================================
+   16. FAQ
+   ========================================================= */
+
+details {
+    max-width: 44rem;
+
+    padding: 1rem 1.2rem;
+
+    background: var(--surface);
+
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+details + details {
+    margin-top: 0.8rem;
+}
+
+summary {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+details p {
+    margin-top: 0.7rem;
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   17. PROJECT / SERVICE LISTS
+   ========================================================= */
+
+.lists {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 1.25rem;
+}
+
+.lst {
+    padding: 1.5rem;
+
+    background: var(--surface);
+
+    border: 1px solid var(--line);
+    border-radius: 14px;
+}
+
+.chk {
+    display: grid;
+    gap: 0.6rem;
+
+    list-style: none;
+
+    margin: 0.9rem 0 0;
+    padding: 0;
+}
+
+.chk li {
+    position: relative;
+
+    padding-left: 1.8rem;
+
+    color: var(--muted);
+}
+
+.chk li::before {
+    content: "";
+
+    position: absolute;
+    left: 0.1rem;
+    top: 0.42rem;
+
+    width: 0.9rem;
+    height: 0.5rem;
+
+    border-left: 3px solid var(--brand);
+    border-bottom: 3px solid var(--brand);
+
+    transform: rotate(-45deg);
+}
+
+
+/* =========================================================
+   18. IMAGES / ARTWORK
+   ========================================================= */
+
+.thumb {
+    width: 100%;
+
+    aspect-ratio: 2 / 1;
+
+    border-radius: 10px;
+
+    background: color-mix(
+        in srgb,
+        var(--brand) 12%,
+        var(--bg)
+    );
+}
+
+.art {
+    width: 100%;
+    max-width: 26rem;
+
+    aspect-ratio: 2 / 1;
+
+    margin-top: 1.5rem;
+
+    background: color-mix(
+        in srgb,
+        var(--brand) 12%,
+        var(--bg)
+    );
+
+    border: 1px solid var(--line);
+    border-radius: 14px;
+}
+
+
+/* =========================================================
+   19. LOGO SVG STYLES
+   ========================================================= */
+
+.lg {
+    width: 38px;
+    height: 38px;
+
+    flex: none;
+}
+
+.lg .b {
+    fill: var(--brand);
+}
+
+.lg .m {
+    fill: none;
+    stroke: var(--brand-ink);
+    stroke-width: 3.5;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.lg .d {
+    fill: var(--warm);
+}
+
+.s {
+    fill: var(--surface);
+    stroke: var(--ink);
+    stroke-width: 2.5;
+}
+
+.l {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 2.5;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.k {
+    stroke: var(--brand);
+    stroke-width: 4;
+}
+
+.w {
+    fill: var(--warm);
+    stroke: var(--ink);
+    stroke-width: 2.5;
+}
+
+.f {
+    fill: var(--brand);
+}
+
+
+/* =========================================================
+   20. PAGE VISIBILITY
+   ========================================================= */
+
+[data-page] {
+    display: none;
+}
+
+body[data-view="home"] [data-page~="home"],
+body[data-view="about"] [data-page~="about"],
+body[data-view="services"] [data-page~="services"],
+body[data-view="blog"] [data-page~="blog"],
+body[data-view="contact"] [data-page~="contact"],
+body[data-view="projects"] [data-page~="projects"],
+body[data-view="training"] [data-page~="training"],
+body[data-view="faq"] [data-page~="faq"],
+body[data-view="software"] [data-page~="software"],
+body[data-view="network"] [data-page~="network"],
+body[data-view="security"] [data-page~="security"] {
+    display: block;
+}
+
+
+/* =========================================================
+   21. FOOTER
+   ========================================================= */
+
+footer {
+    padding: 2rem 0;
+
+    border-top: 1px solid var(--line);
+
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+footer .wrap {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    gap: 1rem;
+}
+
+footer .logo {
+    color: var(--ink);
+    font-size: 0.95rem;
+}
+
+footer ul {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 1.2rem;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =========================================================
+   22. BACK LINK
+   ========================================================= */
+
+.back {
+    color: var(--brand);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   23. WHATSAPP BUTTON
+   ========================================================= */
+
+.wa {
+    position: fixed;
+
+    right: 1rem;
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+
+    z-index: 20;
+
+    width: 54px;
+    height: 54px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: #25D366;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.wa svg {
+    width: 28px;
+    height: 28px;
+
+    fill: none;
+    stroke: #fff;
+    stroke-width: 2;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   24. TABLET / MEDIUM SCREENS
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .menu {
+        display: block;
+    }
+
+    nav {
+        display: none;
+
+        position: absolute;
+
+        top: calc(
+            72px + env(safe-area-inset-top, 0px)
+        );
+
+        left: 0;
+        right: 0;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 1rem;
+
+        padding: 1.2rem 1.25rem;
+
+        background: var(--bg);
+
+        border-bottom: 1px solid var(--line);
+    }
+
+    nav.open {
+        display: flex;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0.9rem;
+    }
+}
+
+
+/* =========================================================
+   25. SCREEN WIDTH: 900px
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .hero .wrap,
+    .about,
+    .contact {
+        grid-template-columns: 1fr;
+    }
+
+    .services,
+    .posts {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .svc,
+    .svc:nth-child(3n) {
+        border-right: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+    }
+
+    .svc:nth-child(2n) {
+        border-right: 0;
+    }
+
+    .svc:nth-last-child(-n + 2) {
+        border-bottom: 0;
+    }
+
+    .lists {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+
+/* =========================================================
+   26. MOBILE: 720px
+   ========================================================= */
+
+@media (max-width: 720px) {
+
+    .services,
+    .posts {
+        grid-template-columns: 1fr;
+    }
+
+    .svc,
+    .svc:nth-child(2n),
+    .svc:nth-child(3n) {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .svc:last-child {
+        border-bottom: 0;
+    }
+
+    .board {
+        box-shadow: 8px 8px 0 var(--warm);
+    }
+}
+
+
+/* =========================================================
+   27. MOBILE: 640px
+   ========================================================= */
+
+@media (max-width: 640px) {
+
+    .lists {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   28. ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
